@@ -73,7 +73,7 @@ export default function EnchantingDateProposalApp() {
     // Step 0: Initial Question
     <motion.div key="step0" className="text-center" {...fadeInUp}>
       <h1 className="text-4xl font-bold mb-6 text-pink-600">
-        Will you go on a date with me?
+        Wil je op date met mij?
       </h1>
       <motion.img
         initial={{ opacity: 0, scale: 0.8 }}
@@ -91,7 +91,7 @@ export default function EnchantingDateProposalApp() {
           }}
           className="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-full transition-all duration-300 transform hover:scale-105"
         >
-          Yes, I&apos;d love to!
+          Jaaa!
         </Button>
         <Dialog>
           <DialogTrigger asChild>
@@ -99,16 +99,16 @@ export default function EnchantingDateProposalApp() {
               variant="outline"
               className="border-pink-300 text-pink-500 hover:bg-pink-100 font-bold py-2 px-4 rounded-full transition-all duration-300 transform hover:scale-105"
             >
-              No
+              Nee
             </Button>
           </DialogTrigger>
           <DialogContent className="bg-pink-50 border-2 border-pink-300">
             <DialogHeader>
               <DialogTitle className="text-2xl font-bold text-pink-600">
-                There is no &quot;NOOOOOO&quot;
+                Je hebt geen keuze!
               </DialogTitle>
               <DialogDescription className="text-lg text-pink-500">
-                You must come with me!
+                Je moet met me mee!!
               </DialogDescription>
             </DialogHeader>
             <motion.img
@@ -126,7 +126,7 @@ export default function EnchantingDateProposalApp() {
               }}
               className="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-full transition-all duration-300 transform hover:scale-105"
             >
-              Okay, I&apos;ll come!
+              Oke, ik kom!
             </Button>
           </DialogContent>
         </Dialog>
@@ -136,7 +136,7 @@ export default function EnchantingDateProposalApp() {
     // Step 1: Date and Time Selection
     <motion.div key="step1" className="text-center" {...fadeInUp}>
       <h2 className="text-3xl font-bold mb-6 text-pink-600">
-        YEYYYYYYYY, WHEN SHALL WE GO?
+        YAYYYY, Wanneer?
       </h2>
       <motion.img
         initial={{ opacity: 0, scale: 0.8 }}
@@ -155,7 +155,7 @@ export default function EnchantingDateProposalApp() {
         />
         <Select onValueChange={(time) => setAnswers({ ...answers, time })}>
           <SelectTrigger className="w-full">
-            <SelectValue placeholder="Select a time" />
+            <SelectValue placeholder="Vul een tijd in" />
           </SelectTrigger>
           <SelectContent>
             {Array.from({ length: 24 }, (_, i) => i).map((hour) => (
@@ -174,7 +174,7 @@ export default function EnchantingDateProposalApp() {
         disabled={!answers.date || !answers.time}
         className="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-6 rounded-full transition-all duration-300 transform hover:scale-105 animate-pulse disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        <Clock className="mr-2 h-5 w-5" /> Set our date!{" "}
+        <Clock className="mr-2 h-5 w-5" /> Zet de datum!{" "}
         <Heart className="ml-2 h-5 w-5" />
       </Button>
     </motion.div>,
@@ -182,15 +182,20 @@ export default function EnchantingDateProposalApp() {
     // Step 2: Food Selection
     <motion.div key="step2" className="text-center" {...fadeInUp}>
       <h2 className="text-3xl font-bold mb-6 text-pink-600">
-        What shall we feast on, my dear?
+        Wat gaan we eten?
       </h2>
       <div className="grid grid-cols-2 gap-6 mb-6">
         {[
-          { name: "Lasagna", icon: <Utensils /> },
-          { name: "Chicken Pie", icon: <Utensils /> },
-          { name: "Chicken Shawarma", icon: <Utensils /> },
-          { name: "Snack Platter", icon: <Coffee /> },
-          { name: "Mix rice", icon: <Utensils /> },
+          { name: "Stamppot", icon: <Utensils /> },
+          { name: "Poffertjes", icon: <Utensils /> },
+          { name: "Bitterballen", icon: <Utensils /> },
+          { name: "Kapsalon", icon: <Utensils /> },
+          { name: "Pizza", icon: <Utensils /> },
+          { name: "Friet met mayo", icon: <Utensils /> },
+          { name: "McDonald's Menu", icon: <Coffee /> },
+          { name: "KFC Bucket", icon: <Coffee /> },
+          { name: "Zelfgemaakte Spaghetti", icon: <Utensils /> },
+          { name: "Erwtensoep", icon: <Utensils /> }
         ].map(({ name, icon }) => (
           <motion.button
             key={name}
@@ -218,26 +223,27 @@ export default function EnchantingDateProposalApp() {
         disabled={answers.food.length === 0}
         className="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-6 rounded-full transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        Looks delicious!
+        Oke, goeie
       </Button>
     </motion.div>,
 
     // Step 3: Movie Selection
     <motion.div key="step3" className="text-center" {...fadeInUp}>
       <h2 className="text-3xl font-bold mb-6 text-pink-600">
-        What shall we watch together?
+        Welke film gaan we kijken?
       </h2>
       <div className="grid grid-cols-2 gap-6 mb-6">
         {[
-          "The Notebook",
-          "La La Land",
-          "Titanic",
-          "Pride and Prejudice",
-          "Anyone But You",
-          "Past Lives",
-          "Love at First Sight",
-          "Through My Window 3",
-          "Something else",
+  "Inception",
+  "The Godfather",
+  "The Dark Knight",
+  "Forrest Gump",
+  "Pulp Fiction",
+  "The Shawshank Redemption",
+  "Avatar",
+  "Avengers",
+  "Harry Potter ",
+  "Iets anders",
         ].map((movie) => (
           <motion.button
             key={movie}
@@ -245,9 +251,9 @@ export default function EnchantingDateProposalApp() {
             whileTap={{ scale: 0.95 }}
             className="bg-white text-pink-600 hover:bg-pink-100 font-bold py-4 px-6 rounded-lg shadow-md transition-colors duration-300"
             onClick={() => {
-              if (movie === "Something else") {
+              if (movie === "Iets anders") {
                 const customMovie = prompt(
-                  "What movie would you like to watch?"
+                  "Welke film wil je kijken??"
                 );
                 if (customMovie) handleAnswer("movie", customMovie);
               } else {
@@ -265,7 +271,7 @@ export default function EnchantingDateProposalApp() {
     // Step 4: Excitement Rating
     <motion.div key="step4" className="text-center" {...fadeInUp}>
       <h2 className="text-3xl font-bold mb-6 text-pink-600">
-        How excited are you for our date?
+        Hoeveel excitement??
       </h2>
       <div className="max-w-md mx-auto mb-6 p-4 bg-white rounded-lg shadow-lg">
         <motion.div className="relative h-6 mb-4">
@@ -287,8 +293,8 @@ export default function EnchantingDateProposalApp() {
           }
         />
         <div className="flex justify-between mt-2">
-          <span>Can&apos;t wait!</span>
-          <span>Super duper excited!</span>
+          <span>Ik kan niet wachten!</span>
+          <span>Top 1 excited!</span>
         </div>
       </div>
       <motion.div
@@ -306,17 +312,17 @@ export default function EnchantingDateProposalApp() {
         }}
         className="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-6 rounded-full transition-all duration-300 transform hover:scale-105"
       >
-        Let&apos;s make it official!
+        Verstuur! <Heart className="ml-2 h-5 w-5" />
       </Button>
     </motion.div>,
 
     // Step 5: Final Message
     <motion.div key="step5" className="text-center" {...fadeInUp}>
       <h2 className="text-4xl font-bold mb-6 text-pink-600">
-        It&apos;s a date, my love!
+        It&apos;s a date!!
       </h2>
       <p className="text-xl mb-2 text-pink-500">
-        I can&apos;t wait to see you on:
+        Ik kan niet wachten om je te zien om
       </p>
       <p className="text-2xl font-bold mb-6 text-pink-600">
         {answers.date?.toDateString()} at {answers.time}
@@ -342,10 +348,10 @@ export default function EnchantingDateProposalApp() {
         transition={{ delay: 1, duration: 1 }}
         className="mt-6 text-lg text-pink-500"
       >
-        <p>We&apos;ll enjoy some delicious {answers.food.join(", ")}.</p>
-        <p>Then we&apos;ll watch &quot;{answers.movie}&quot; together.</p>
+        <p>Wat we gaan eten: {answers.food.join(", ")}.</p>
+        <p>Daarna gaan we &quot;{answers.movie}&quot; kijken.</p>
         <p className="mt-4 font-bold">
-          Your excitement level: {answers.excitement}/100
+          Je excitement level: {answers.excitement}/100
         </p>
       </motion.div>
     </motion.div>,
