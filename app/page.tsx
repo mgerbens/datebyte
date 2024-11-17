@@ -180,52 +180,62 @@ export default function EnchantingDateProposalApp() {
     </motion.div>,
 
     // Step 2: Food Selection
-    <motion.div key="step2" className="text-center" {...fadeInUp}>
-      <h2 className="text-3xl font-bold mb-6 text-pink-600">
-        Wat gaan we eten?
-      </h2>
-      <div className="grid grid-cols-2 gap-6 mb-6">
-        {[
-          { name: "Stamppot", icon: <Utensils /> },
-          { name: "Poffertjes", icon: <Utensils /> },
-          { name: "Bitterballen", icon: <Utensils /> },
-          { name: "Kapsalon", icon: <Utensils /> },
-          { name: "Pizza", icon: <Utensils /> },
-          { name: "Friet met mayo", icon: <Utensils /> },
-          { name: "McDonald's Menu", icon: <Coffee /> },
-          { name: "KFC Bucket", icon: <Coffee /> },
-          { name: "Zelfgemaakte Spaghetti", icon: <Utensils /> },
-          { name: "Erwtensoep", icon: <Utensils /> }
-        ].map(({ name, icon }) => (
-          <motion.button
-            key={name}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className={`h-32 flex flex-col items-center justify-center rounded-lg shadow-md transition-colors duration-300 ${
-              answers.food.includes(name)
-                ? "bg-pink-500 text-white"
-                : "bg-white text-pink-600 hover:bg-pink-100"
-            }`}
-            onClick={() => {
-              const newFood = answers.food.includes(name)
-                ? answers.food.filter((f) => f !== name)
-                : [...answers.food, name];
+    // Step 2: Food Selection
+<motion.div key="step2" className="text-center" {...fadeInUp}>
+  <h2 className="text-3xl font-bold mb-6 text-pink-600">
+    Wat gaan we eten?
+  </h2>
+  <div className="grid grid-cols-2 gap-6 mb-6">
+    {[
+      { name: "Stamppot", icon: <Utensils /> },
+      { name: "Poffertjes", icon: <Utensils /> },
+      { name: "Bitterballen", icon: <Utensils /> },
+      { name: "Kapsalon", icon: <Utensils /> },
+      { name: "Pizza", icon: <Utensils /> },
+      { name: "Friet met mayo", icon: <Utensils /> },
+      { name: "McDonald's Menu", icon: <Coffee /> },
+      { name: "KFC Bucket", icon: <Coffee /> },
+      { name: "Zelfgemaakte Spaghetti", icon: <Utensils /> },
+      { name: "Erwtensoep", icon: <Utensils /> },
+      { name: "Iets anders", icon: <Utensils /> },
+    ].map(({ name, icon }) => (
+      <motion.button
+        key={name}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        className={`h-32 flex flex-col items-center justify-center rounded-lg shadow-md transition-colors duration-300 ${
+          answers.food.includes(name)
+            ? "bg-pink-500 text-white"
+            : "bg-white text-pink-600 hover:bg-pink-100"
+        }`}
+        onClick={() => {
+          if (name === "Iets anders") {
+            const customFood = prompt("Wat wil je eten?");
+            if (customFood) {
+              const newFood = [...answers.food, customFood];
               setAnswers({ ...answers, food: newFood });
-            }}
-          >
-            {icon}
-            <span className="mt-2 font-semibold">{name}</span>
-          </motion.button>
-        ))}
-      </div>
-      <Button
-        onClick={() => setStep(step + 1)}
-        disabled={answers.food.length === 0}
-        className="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-6 rounded-full transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+            }
+          } else {
+            const newFood = answers.food.includes(name)
+              ? answers.food.filter((f) => f !== name)
+              : [...answers.food, name];
+            setAnswers({ ...answers, food: newFood });
+          }
+        }}
       >
-        Oke, goeie
-      </Button>
-    </motion.div>,
+        {icon}
+        <span className="mt-2 font-semibold">{name}</span>
+      </motion.button>
+    ))}
+  </div>
+  <Button
+    onClick={() => setStep(step + 1)}
+    disabled={answers.food.length === 0}
+    className="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-6 rounded-full transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+  >
+    Oke, goeie
+  </Button>
+</motion.div>,
 
     // Step 3: Movie Selection
     <motion.div key="step3" className="text-center" {...fadeInUp}>
@@ -234,16 +244,16 @@ export default function EnchantingDateProposalApp() {
       </h2>
       <div className="grid grid-cols-2 gap-6 mb-6">
         {[
-  "Inception",
-  "The Godfather",
-  "The Dark Knight",
-  "Forrest Gump",
-  "Pulp Fiction",
-  "The Shawshank Redemption",
-  "Avatar",
-  "Avengers",
-  "Harry Potter ",
-  "Iets anders",
+          "Inception",
+          "The Godfather",
+          "The Dark Knight",
+          "Forrest Gump",
+          "Pulp Fiction",
+          "The Shawshank Redemption",
+          "Avatar",
+          "Avengers",
+          "Harry Potter ",
+          "Iets anders",
         ].map((movie) => (
           <motion.button
             key={movie}
@@ -252,9 +262,7 @@ export default function EnchantingDateProposalApp() {
             className="bg-white text-pink-600 hover:bg-pink-100 font-bold py-4 px-6 rounded-lg shadow-md transition-colors duration-300"
             onClick={() => {
               if (movie === "Iets anders") {
-                const customMovie = prompt(
-                  "Welke film wil je kijken??"
-                );
+                const customMovie = prompt("Welke film wil je kijken??");
                 if (customMovie) handleAnswer("movie", customMovie);
               } else {
                 handleAnswer("movie", movie);
@@ -359,22 +367,22 @@ export default function EnchantingDateProposalApp() {
 
   useEffect(() => {
     const saveAnswers = async () => {
-      console.log('Saved answers:', answers);
-      
+      console.log("Saved answers:", answers);
+
       // Save to localStorage
-      localStorage.setItem('dateProposalAnswers', JSON.stringify(answers));
+      localStorage.setItem("dateProposalAnswers", JSON.stringify(answers));
 
       // Send to your email
       try {
-        await fetch('/api/send-response', {
-          method: 'POST',
+        await fetch("/api/send-response", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
-          body: JSON.stringify(answers)
+          body: JSON.stringify(answers),
         });
       } catch (error) {
-        console.error('Failed to send response:', error);
+        console.error("Failed to send response:", error);
       }
     };
 
